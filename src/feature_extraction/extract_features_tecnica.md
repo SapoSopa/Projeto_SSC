@@ -36,18 +36,18 @@ Este módulo realiza a extração automatizada de **características (features)*
 
 **Necessidade**: **CRÍTICA** – Fundamentais para detectar padrões rítmicos e comportamentos anormais do ECG.
 
-| Feature           | Descrição                                           | Importância Técnica/Clínica                             |
-|------------------|-----------------------------------------------------|----------------------------------------------------------|
-| `mean`           | Média do sinal                                       | Nível de base ou offset                                  |
-| `std`, `variance`| Dispersão/amplitude de oscilação                     | Indicador de variabilidade do ritmo cardíaco             |
-| `min`, `max`     | Valores extremos                                     | Detecta picos ou quedas acentuadas                      |
-| `range`          | max - min                                            | Medida geral da amplitude                                |
-| `rms`            | Raiz média quadrada                                  | Potência média do sinal                                  |
-| `skewness`       | Assimetria                                           | Pode indicar anormalidades nas ondas                    |
-| `kurtosis`       | Curtose                                              | Identifica presença de picos ou planicidade              |
-| `iqr`            | Intervalo interquartil                               | Versão robusta da variabilidade                          |
-| `zero_crossings` | Nº de cruzamentos de zero                            | Complexidade oscilatória e ruído                         |
-| `num_peaks`      | Picos no sinal (ex: batimentos)                      | Detecta frequência cardíaca e possíveis arritmias        |
+| Feature          | Descrição                                                           | Importância Técnica/Clínica                               |
+|------------------|----------------------------------------------------------------------|----------------------------------------------------------|
+| `mean`           | Média do sinal                                                       | Nível de base ou offset                                  |
+| `std`, `variance`| Dispersão/amplitude de oscilação                                     | Indicador de variabilidade do ritmo cardíaco             |
+| `min`, `max`     | Valores extremos                                                     | Detecta picos ou quedas acentuadas                       |
+| `range`          | max - min                                                            | Medida geral da amplitude                                |
+| `rms`            | Raiz média quadrada                                                  | Potência média do sinal                                  |
+| `skewness`       | Assimetria                                                           | Pode indicar anormalidades nas ondas                     |
+| `kurtosis`       | Curtose                                                              | Identifica presença de picos ou planicidade              |
+| `iqr`            | Intervalo interquartil                                               | Versão robusta da variabilidade                          |
+| `zero_crossings` | Nº de vezes que o sinal troca de positivo para negativo e vice-versa | Complexidade oscilatória e ruído                         |
+| `num_peaks`      | Picos no sinal (ex: batimentos)                                      | Detecta frequência cardíaca e possíveis arritmias        |
 
 ---
 
@@ -65,7 +65,7 @@ Este módulo realiza a extração automatizada de **características (features)*
 | `spectral_flux`        | Variação no espectro entre frames             | Mudanças abruptas – sensível a transientes                  |
 | `dominant_frequency`   | Pico espectral principal                      | Frequência predominante (ex: frequência cardíaca)           |
 | `fft_mean`, `fft_std`  | Estatísticas básicas da magnitude             | Resumo da energia espectral                                 |
-| `band_energy_5_15Hz`   | Energia entre 5 e 15 Hz                       | Banda típica do ECG: ondas P, QRS e T                        |
+| `band_energy_5_15Hz`   | Energia entre 5 e 15 Hz                       | Banda típica do ECG: ondas P, QRS e T                       |
 
 ---
 
