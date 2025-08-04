@@ -80,7 +80,7 @@ def extract_frequency_features(signal: np.ndarray, fs: float = 100.0) -> Dict[st
     bandwidth = np.sqrt(np.sum(((freqs - centroid) ** 2) * mag) / mag_sum) if mag_sum > 0 else 0
     cumulative = np.cumsum(mag)
     rolloff = freqs[np.searchsorted(cumulative, 0.85 * cumulative[-1])] if cumulative[-1] > 0 else 0
-    flux = np.sum(np.diff(mag) ** 2)
+    flux = np.sum(np.diff(mag) ** 2) # Dividir por 10 antes de elevar ao quadrado 
     dominant = freqs[np.argmax(mag)]
 
     return {
@@ -91,7 +91,7 @@ def extract_frequency_features(signal: np.ndarray, fs: float = 100.0) -> Dict[st
         'dominant_frequency': float(dominant),
         'fft_mean': float(mag.mean()),
         'fft_std': float(mag.std()),
-        'band_energy_5_15Hz': float(np.sum(mag[(freqs >= 5) & (freqs <= 15)] ** 2))
+        'band_energy_0.5_45Hz': float(np.sum(mag[(freqs >= 0.5) & (freqs <= 45)] ** 2))
     }
 
 def extract_shannon_entropy(signal: np.ndarray, bins: int = 100) -> Dict[str, float]:
@@ -100,10 +100,10 @@ def extract_shannon_entropy(signal: np.ndarray, bins: int = 100) -> Dict[str, fl
     Calcula a entropia de Shannon
     """
 
-    hist, _ = np.histogram(signal, bins=bins, density=True)
-    hist += 1e-12  # evitar log(0)
-    ent = scipy_entropy(hist, base=2)
-
+    hist, _ = np.histogram(signal, bins=bins, density=False)
+    prob_dist = hist / np.sum(hist)  # normaliza para distribuição de probabilidade
+    prob_dist += 1e-12  # evitar log(0)
+    ent = scipy_entropy(prob_dist, base=2)
     return {'shannon_entropy': float(ent)}
 
 
@@ -121,7 +121,7 @@ def pipeline_extract_features(filepath_npz: str) -> Tuple[Dict[str, float], dict
     fs = metadata.get('fs', 100)
 
     if len(signal.shape) == 2:
-        signal = signal[:, 0] 
+        signal = signal[:, 0]
 
     features = {}
     features.update(extract_time_features(signal))
@@ -130,6 +130,14 @@ def pipeline_extract_features(filepath_npz: str) -> Tuple[Dict[str, float], dict
 
     return features, metadata
 
+
+def pipeline(signals, index, fs):
+    signal = signals[:, index]
+    features = {}
+    features.update(extract_time_features(signal))
+    features.update(extract_frequency_features(signal, fs))
+    features.update(extract_shannon_entropy(signal))
+    return features
 
 # ----------------------------- #
 # 4- Salvar características extraídas
@@ -176,13 +184,17 @@ def visualizar_features(features_dict: dict) -> None:
 
     nomes = list(features_dict.keys())
     valores = list(features_dict.values())
-
+    n = len(valores)
+    cmap = plt.get_cmap('viridis')  # ou qualquer outro colormap
+    colors = [cmap(i / n) for i in range(n)]
+    
     plt.figure(figsize=(12, 6))
-    plt.bar(nomes, valores, color='skyblue')
+    plt.bar(nomes, valores, color=colors)
     plt.xticks(rotation=45, ha='right')
     plt.ylabel("Valor")
     plt.title("Features Extraídas")
     plt.grid(True, axis='y', linestyle='--', alpha=0.7)
+    plt.yscale("log")
     plt.tight_layout()
     plt.show()
 
@@ -195,10 +207,18 @@ if __name__ == '__main__':
 
     arquivo_npz = "../data/processed/records000/00001_processed.npz"
 
-    features, metadata = pipeline_extract_features(arquivo_npz)
+    '''features, metadata = pipeline_extract_features(arquivo_npz, 1)
     
     caminho_saida = save_features(features, metadata)
 
     print(f"Features salvas em: {caminho_saida}")
 
-    visualizar_features({'features': features})
+    visualizar_features({'features': features})'''
+
+    signals, metadata = load_signal_processado(arquivo_npz)
+    fs = metadata.get('fs', 100)
+    
+    if len(signals.shape) == 2:
+        for i in range(0, 12):
+            features = pipeline(signals, i, fs)
+            print(f"{features}\n")
