@@ -1,0 +1,24 @@
+RELATÓRIO DE CLASSIFICAÇÃO ECG - RANDOM FOREST
+==================================================
+
+Timestamp: 20250813_222658
+Classes: ['MI', 'AFIB', 'NORM']
+Acurácia: 0.7925
+F1-Score: 0.7800
+Cohen's Kappa: 0.4705
+
+MATRIZ DE CONFUSÃO:
+[[  93   45   63]
+ [  23  461  484]
+ [  16  217 2684]]
+
+RELATÓRIO DETALHADO:
+              precision    recall  f1-score   support
+
+        AFIB       0.70      0.46      0.56       201
+          MI       0.64      0.48      0.55       968
+        NORM       0.83      0.92      0.87      2917
+
+    accuracy                           0.79      4086
+   macro avg       0.72      0.62      0.66      4086
+weighted avg       0.78      0.79      0.78      4086
