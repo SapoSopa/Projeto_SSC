@@ -1,31 +1,35 @@
 # Referências Bibliográficas
-(rapaz, tenho que ver isso dps, coloquei pro chat arrumar e não verifiquei isso, talvez vá para o readme.md principal)
+
+Este documento contém as principais referências utilizadas no desenvolvimento do projeto de Sinais e Sistemas para Engenharia da Computação (ES413).
+
 ## Artigos Científicos
 
-1. **Aziz, S. et al.** (2021). "A comprehensive analysis of feature extraction techniques for signal processing". *Nature Scientific Reports*, 11(1), 1-15.
+1. **Clifford, G. D., et al.** (2006). "Advanced Methods and Tools for ECG Data Analysis". Artech House.
 
-2. **Smith, J. A.** (2021). "Digital signal processing fundamentals for machine learning applications". *IEEE Transactions on Signal Processing*, 69(3), 234-248.
+2. **Rajpurkar, P., et al.** (2017). "Cardiologist-level arrhythmia detection and classification in ambulatory electrocardiograms using a deep neural network". *Nature Medicine*, 23(7), 788-796.
 
-3. **Johnson, M. K.** (2020). "Comparative study of classification algorithms for time-series data". *Journal of Machine Learning Research*, 21(1), 45-72.
+3. **Acharya, U. R., et al.** (2017). "A deep convolutional neural network model to classify heartbeats". *Computers in Biology and Medicine*, 89, 389-396.
 
-## Livros de Referência
+4. **Martis, R. J., et al.** (2013). "ECG beat classification using PCA, LDA, ICA and Discrete Wavelet Transform". *Biomedical Signal Processing and Control*, 8(5), 437-448.
 
-1. **Oppenheim, A. V., & Schafer, R. W.** (2010). *Discrete-Time Signal Processing* (3rd ed.). Pearson.
+5. **Llamedo, M., & Martínez, J. P.** (2011). "Heartbeat classification using feature selection driven by database generalization criteria". *IEEE Transactions on Biomedical Engineering*, 58(3), 616-625.
 
-2. **Hastie, T., Tibshirani, R., & Friedman, J.** (2009). *The Elements of Statistical Learning* (2nd ed.). Springer.
+## Recursos Online e Documentação
 
-3. **Bishop, C. M.** (2006). *Pattern Recognition and Machine Learning*. Springer.
-
-## Recursos Online
-
+### Bibliotecas Python
 1. **SciPy Documentation**: https://docs.scipy.org/
 2. **Scikit-learn User Guide**: https://scikit-learn.org/stable/user_guide.html
 3. **NumPy Documentation**: https://numpy.org/doc/
+4. **Matplotlib Documentation**: https://matplotlib.org/stable/contents.html
+5. **Pandas Documentation**: https://pandas.pydata.org/docs/
 
-## Datasets Utilizados
+## Software e Ferramentas
 
-- Sinais sintéticos gerados para demonstração
-- Futuras implementações podem incluir datasets reais de:
-  - Sinais biomédicos (ECG, EEG)
-  - Sinais de áudio
-  - Séries temporais industriais
+1. **Jupyter Notebook**: https://jupyter.org/
+2. **Visual Studio Code**: https://code.visualstudio.com/
+3. **Git**: https://git-scm.com/
+4. **Python**: https://www.python.org/
+
+---
+
+*Projeto: Classificador de Doenças Cardíacas com ECG - ES413*
